@@ -1,4 +1,4 @@
-# Flights Aggregator
+# Flights Aggregator Chrome Extension
 
 A Chrome/Chromium extension for comparing domestic Iranian flight prices across multiple platforms.
 
