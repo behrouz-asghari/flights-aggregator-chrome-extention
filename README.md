@@ -2,6 +2,8 @@
 
 A Chrome/Chromium extension for comparing domestic Iranian flight prices across multiple platforms.
 
+<img width="1456" height="720" alt="banner" src="https://github.com/user-attachments/assets/c51ded43-ce4f-41bd-a25b-7eaf6edfb1f4" />
+
 ## Overview
 
 Compares results from **Alibaba**, **FlyToday**, and **MrBilit** in a single popup interface.
@@ -66,12 +68,13 @@ json
 
 ### Host Permissions
 
-
+```text
 *://*.alibaba.ir/*
 *://*.ws.alibaba.ir/*
 *://*.flytoday.ir/*
 *://*.atighgasht.com/*
 *://*.mrbilit.com/*
+```
 
 ## Installation
 
