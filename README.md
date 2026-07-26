@@ -68,12 +68,13 @@ json
 
 ### Host Permissions
 
-
+```text
 *://*.alibaba.ir/*
 *://*.ws.alibaba.ir/*
 *://*.flytoday.ir/*
 *://*.atighgasht.com/*
 *://*.mrbilit.com/*
+```
 
 ## Installation
 
