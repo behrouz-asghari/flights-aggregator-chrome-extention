@@ -2,9 +2,7 @@
 
 A Chrome/Chromium extension for comparing domestic Iranian flight prices across multiple platforms.
 
-<img width="425" height="503" alt="Screenshot 2026-07-26 174944" src="https://github.com/user-attachments/assets/b9ecdb96-5545-446c-9760-7464222aa632" />
-<img width="431" height="608" alt="Screenshot 2026-07-26 175011" src="https://github.com/user-attachments/assets/50ef7889-b8e0-4460-b5dc-a0947422a9e1" />
-
+<img width="1456" height="720" alt="banner" src="https://github.com/user-attachments/assets/c51ded43-ce4f-41bd-a25b-7eaf6edfb1f4" />
 
 ## Overview
 
