@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "پروازیار - مقایسه قیمت پرواز",
+  "version": "1.0.0",
+  "description": "مقایسه قیمت پرواز از علی‌بابا، فلای‌تودی و مستربلیت",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://*.alibaba.ir/*",
+    "*://*.ws.alibaba.ir/*",
+    "*://*.flytoday.ir/*",
+    "*://*.atighgasht.com/*",
+    "*://*.mrbilit.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

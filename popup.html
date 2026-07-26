@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>پروازیار</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">
+       <img class="logo-icon" src="icons/icon48.png" alt="لوگوی پروازیار" />
+
+      <h1 class="header-title">پروازیار</h1>
+    </div>
+    <span class="header-subtitle">مقایسه قیمت پرواز</span>
+  </header>
+
+  <!-- Search Form -->
+  <main class="main">
+    <div class="search-form" id="searchForm">
+      <!-- Trip Type -->
+      <div class="trip-type">
+        <label class="trip-option">
+          <input type="radio" name="tripType" value="oneway" checked>
+          <span class="trip-label">یکطرفه</span>
+        </label>
+        <label class="trip-option">
+          <input type="radio" name="tripType" value="roundtrip">
+          <span class="trip-label">رفت و برگشت</span>
+        </label>
+      </div>
+
+      <!-- Origin / Destination -->
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">مبدا</label>
+          <select id="origin" class="form-select">
+            <option value="">انتخاب کنید</option>
+          </select>
+        </div>
+        <button class="swap-btn" id="swapBtn" title="تعویض مبدا و مقصد">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 16L3 12M3 12L7 8M3 12H21M17 8L21 12M21 12L17 16"/>
+          </svg>
+        </button>
+        <div class="form-group">
+          <label class="form-label">مقصد</label>
+          <select id="destination" class="form-select">
+            <option value="">انتخاب کنید</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="form-row">
+        <div class="form-group" id="departureDateGroup">
+          <label class="form-label">تاریخ رفت</label>
+          <div id="departureDatePicker"></div>
+        </div>
+        <div class="form-group" id="returnDateGroup" style="display: none;">
+          <label class="form-label">تاریخ برگشت</label>
+          <div id="returnDatePicker"></div>
+        </div>
+      </div>
+
+      <!-- Passengers -->
+      <div class="form-row passengers-row">
+        <div class="form-group passenger-group">
+          <label class="form-label">بزرگسال</label>
+          <div class="passenger-counter">
+            <button class="counter-btn" data-target="adult" data-action="minus">−</button>
+            <span class="counter-value" id="adultCount">1</span>
+            <button class="counter-btn" data-target="adult" data-action="plus">+</button>
+          </div>
+        </div>
+        <div class="form-group passenger-group">
+          <label class="form-label">کودک</label>
+          <div class="passenger-counter">
+            <button class="counter-btn" data-target="child" data-action="minus">−</button>
+            <span class="counter-value" id="childCount">0</span>
+            <button class="counter-btn" data-target="child" data-action="plus">+</button>
+          </div>
+        </div>
+        <div class="form-group passenger-group">
+          <label class="form-label">نوزاد</label>
+          <div class="passenger-counter">
+            <button class="counter-btn" data-target="infant" data-action="minus">−</button>
+            <span class="counter-value" id="infantCount">0</span>
+            <button class="counter-btn" data-target="infant" data-action="plus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Button -->
+      <button class="search-btn" id="searchBtn">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="M21 21L16.65 16.65"/>
+        </svg>
+        <span>جستجوی پرواز</span>
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-section" id="loadingSection" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">در حال جستجو...</p>
+      <div class="source-progress">
+        <div class="source-item" id="progressAlibaba">
+          <span class="source-dot"></span>
+          <span>علی‌بابا</span>
+          <span class="source-status" id="statusAlibaba">در انتظار</span>
+        </div>
+        <div class="source-item" id="progressFlytoday">
+          <span class="source-dot"></span>
+          <span>فلای‌تودی</span>
+          <span class="source-status" id="statusFlytoday">در انتظار</span>
+        </div>
+        <div class="source-item" id="progressMrbilit">
+          <span class="source-dot"></span>
+          <span>مستربلیت</span>
+          <span class="source-status" id="statusMrbilit">در انتظار</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section" id="resultsSection" style="display: none;">
+      <div class="results-header">
+        <div class="results-header-left">
+          <button class="back-btn" id="backBtn" title="بازگشت به جستجو">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          <h2 class="results-title" id="resultsTitle">نتایج جستجو</h2>
+        </div>
+        <div class="results-sort">
+          <button class="save-png-btn" id="savePngBtn" title="ذخیره تصویر">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+          </button>
+          <label class="sort-label">مرتب‌سازی:</label>
+          <select id="sortSelect" class="sort-select">
+            <option value="price">ارزان‌ترین</option>
+            <option value="departure">ساعت حرکت</option>
+            <option value="duration">مدت پرواز</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="source-badges" id="sourceBadges"></div>
+
+      <div class="results-list" id="resultsList"></div>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-section" id="errorSection" style="display: none;">
+      <div class="error-icon">!</div>
+      <p class="error-text" id="errorText"></p>
+      <button class="retry-btn" id="retryBtn">تلاش مجدد</button>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-section" id="emptySection" style="display: none;">
+      <svg class="empty-icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M32 8L8 32L32 56L56 32L32 8Z"/>
+        <path d="M20 32L32 20L44 32L32 44L20 32Z"/>
+      </svg>
+      <p class="empty-text">پروازی یافت نشد</p>
+      <p class="empty-subtext">مسیر یا تاریخ را تغییر دهید</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span>پروازیار v1.0 — مقایسه قیمت از ۳ منبع</span>
+  </footer>
+
+  <script src="utils/airports.js"></script>
+  <script src="utils/normalizer.js"></script>
+  <script src="utils/jalali.js"></script>
+  <script src="utils/datepicker.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
