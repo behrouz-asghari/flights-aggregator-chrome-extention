@@ -4,7 +4,6 @@ const MRBILIT_SEARCH_URL = "https://flight.atighgasht.com/api/Flights";
 
 // Known working JWT for MrBilit API (public, changes periodically)
 // This is a client identification token, not a user session token
-const MRBILIT_FALLBACK_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidXMiOiI0ZiIsInRybiI6IjE3Iiwic3JjIjoiMiJ9.vvpr9fgASvk7B7I4KQKCz-SaCmoErab_p3csIvULG1w";
 
 function generateMrbilitHeaders() {
   const playerId = crypto.randomUUID();
@@ -13,7 +12,6 @@ function generateMrbilitHeaders() {
   return {
     "accept": "application/json, text/plain, */*",
     "content-type": "application/json-patch+json",
-    "authorization": `Bearer ${MRBILIT_FALLBACK_TOKEN}`,
     "sessionid": sessionId,
     "x-playerid": playerId,
     "origin": "https://mrbilit.com",
